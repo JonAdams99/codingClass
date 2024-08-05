@@ -1,0 +1,60 @@
+#Read in  a file called add.txt & display if the the screen
+#Make sure add.txt is in the same project
+
+# def loop through listFiles = [test1.txt, test2.txt, test3.txt]
+    #call def count lines
+        #call def count words
+# print(fileName : #lines "lines," #words "words")
+
+
+
+def countThing(listFiles):
+
+    countLinesTotal = 0
+    countWordsTotal = 0
+    i=0
+
+    for i in range(len(listFiles)):
+        countLines =0
+
+        countLines2, countWords = countLine(listFiles[i])
+        
+        countLines = countLines2+countLines
+        print(listFiles[i]," : ", countLines, "lines,", countWords, "words" )
+
+        countLinesTotal = countLinesTotal + countLines
+        countWordsTotal = countWordsTotal + countWords
+
+        
+    return countLinesTotal, countWordsTotal
+
+def countLine(fileName):
+    num = 0
+    num2 = 0
+    dataFile = open("textFiles/"+fileName)
+    for line in dataFile:
+        
+        num+=1
+        num2 = num2 + countWord(line)
+
+    dataFile.close()
+
+    return num, num2
+
+def countWord(line):
+    num = 0
+
+    num = (line.count(" ")+1)
+
+    return num
+
+def main():
+    countLinesTotal=0
+    countWordsTotal=0
+
+
+    listFiles = ["test1.txt", "test2.txt", "test3.txt"]
+    countLinesTotal, countWordsTotal = countThing(listFiles)
+
+    print("Total: ", countLinesTotal, "lines,", countWordsTotal, "words" )
+main()
